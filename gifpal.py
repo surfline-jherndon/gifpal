@@ -1,12 +1,18 @@
-# GIFpal v1.1.0
-# by John Herndon
+#!/usr/bin/env python
+
+# GIFpal by John Herndon
 
 import csv
 import sys
 from PIL import Image
 
+version = '1.1.0'
+
 # Command line arguments
 if len(sys.argv) < 3:
+    print '  ______ _____ _______  _____  _______'
+    print ' |  ____   |   |______ |_____] |_____| |'
+    print ' |_____| __|__ |       |       |     | |_____ v%s\n' % version
     sys.exit('Usage: %s <input GIF filename> <palette filename> [output GIF filename]' % sys.argv[0])
 
 # Two dimension array for palette
