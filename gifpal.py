@@ -1,30 +1,40 @@
-import sys
+# GIFpal v1.1.0
+# by John Herndon
+
 import csv
-from PIL import Image, ImagePalette
+import sys
+from PIL import Image
 
+# Command line arguments
 if len(sys.argv) < 3:
-    sys.exit('Usage: %s [GIF-filename] [Palette file]' % sys.argv[0])
+    sys.exit('Usage: %s <input GIF filename> <palette filename> [output GIF filename]' % sys.argv[0])
 
-# Two dimension array for colormap
-num_colors, elements = 256, 3
-colormap = [0 for x in range(num_colors * elements)]
+# Two dimension array for palette
+num_colors, values = 256, 3
+palette = [0 for x in range(num_colors * values)]
 
+# RGB value indices
 red = 0
 green = 1
 blue = 2
 
-# Load colormap file
+# Load palette (csv) file
 with open(sys.argv[2]) as f:
     reader = csv.reader(f)
     x = 0
     for row in reader:
-        colormap[x + red] = int(row[red])
-        colormap[x + green] = int(row[green])
-        colormap[x + blue] = int(row[blue])
+        palette[x + red] = int(row[red])
+        palette[x + green] = int(row[green])
+        palette[x + blue] = int(row[blue])
         x += 3
 
+# Load GIF image into memory
 img = Image.open(sys.argv[1], "r")
 
+# If it is indeed a gif, change the palette
 if img.tile[0][0] == "gif":
-    img.putpalette(colormap)
-    img.save(sys.argv[1] + '_fc.gif')
+    img.putpalette(palette)
+    if len(sys.argv) == 4:
+        img.save(sys.argv[3])
+    else:
+        img.save(sys.argv[1] + '_falsecolor.gif')
