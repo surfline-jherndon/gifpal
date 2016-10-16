@@ -10,6 +10,8 @@ __pycache__/
 .Python
 env/
 build/
+bin/
+include/
 develop-eggs/
 dist/
 downloads/
@@ -87,3 +89,4 @@ ENV/
 
 # Rope project settings
 .ropeproject
+pip-selfcheck.json
