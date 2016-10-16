@@ -22,6 +22,9 @@ Replace the weather.gif palette to a false-color palette defined in falsecolor5.
 
 `python gifpal.py weather.gif falsecolor5.pal clouds_falsecolor.gif`
 
+Replace the palette of multiple gif files using the Unix xargs command.
+
+`ls -1 *.gif | xargs -n1 -t -Ifile python gifpal.py file falsecolor5.pal`
 
 ### Palette files
 
