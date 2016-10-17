@@ -1,4 +1,4 @@
-# gifpal
+# GIFpal
 Convert gif palette to a palette of your choice.
 
 ### Requirements
