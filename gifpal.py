@@ -8,7 +8,7 @@ import os
 import sys
 from PIL import Image
 
-version = '1.3.0'
+version = '1.4.0'
 
 
 def verbose(verbosity, message):
@@ -51,6 +51,7 @@ parser.add_argument('--show', action='store_true',
 parser.add_argument('--verbose', action='store_true',
                     help='Step by step processing report.')
 parser.add_argument('--bw', action='store_true', help='First pixel forced black. Last pixel forced white.')
+parser.add_argument('--b', action='store_true', help='First pixel forced black.')
 parser.add_argument('--version', action='store_true', help='Output current version number and exit. ')
 
 args = parser.parse_args()
@@ -80,7 +81,7 @@ verbose(args.verbose, 'Loading palette file %s.' % ''.join(args.palette_file))
 # Load palette (csv) file
 for rgb_value in palette_data:
 
-    if index < 3 and args.bw:
+    if index < 3 and (args.bw or args.b):
         palette[index] = 0
     elif index > 3 * 252 and args.bw:
         palette[index] = 255
