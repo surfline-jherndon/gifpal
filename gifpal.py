@@ -28,9 +28,11 @@ output_footer = '''\
 
 examples:
 
-gifpal.py weather.gif falsecolor5.pal
+gifpal.py weather.gif falsecolor5.py
 
-gifpal.py weather.gif falsecolor5.pal output.gif
+gifpal.py weather.gif falsecolor5.py output.gif
+
+gifpal.py weather.gif falsecolor5.py output.gif --bw
 
 \000
 '''
