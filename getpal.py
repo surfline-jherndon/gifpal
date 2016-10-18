@@ -65,8 +65,13 @@ if img.tile[0][0] == "gif":
 verbose(args.verbose, 'Opening palette output file %s.' % ''.join(args.palette_file))
 output_file = open(args.palette_file[0], 'w')
 
+python_code = 'def palette():\n\n' \
+                '\ttype = "%s"\n\n' % str(args.format)
+output_file.write(python_code)
+
 verbose(args.verbose, 'Writing palette output file %s.' % ''.join(args.palette_file))
-output_file.write('palette = ')
+
+output_file.write('\tpalette = ')
 if args.format == 'list':
     verbose(args.verbose, 'Writing Python list.')
     output_file.write(str(in_palette))
@@ -87,6 +92,7 @@ elif args.format == 'dict':
     verbose(args.verbose, 'Writing Python dictionary.')
     output_file.write(str(new_palette))
 
+output_file.write('\n\n\treturn type, palette\n')
 output_file.close()
 
 verbose(args.verbose, 'Process complete.')
